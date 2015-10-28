@@ -41,7 +41,7 @@ def spanish_translate
 end
 
 def russian_translate
-	translation = YAML.load_file 'russian.yaml'
+	translation = YAML.load_file 'russian.yml'
 	puts "Enter word or phrase you would like translated to English, press 'Q' to quit:"
 	input = gets.chomp!
 	case
