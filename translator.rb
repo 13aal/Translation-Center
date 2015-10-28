@@ -1,12 +1,13 @@
 require 'yaml'
 
 def welcome
-	puts "Welcome to the Translation Center! Please enter the language you would like to translate to English or you can choose from the list below:  
-	1. Spanish
-	2. Russian
-	3. Arabic"
+	puts "Welcome to the Translation Center! Please enter the language you would like to translate to English or you can choose from the list below: " 
+	print	"1. Spanish\n"
+	print	"2. Russian\n"
+	print	"3. Arabic\n" 
+	print"> "
 	input = language = gets.chomp!
-	case input
+	case language
 	when /spanish/i
 		spanish_translate
 	when "1"
@@ -20,7 +21,7 @@ def welcome
 	when "3"
 		arabic_translate
 	else
-		puts "Language is not yet supported within Tranlation Center."
+		puts "Language is not yet supported within Translation Center."
 		exit
 	end
 end
@@ -41,7 +42,7 @@ def spanish_translate
 end
 
 def russian_translate
-	translation = YAML.load_file 'russian.yml'
+	translations = YAML.load_file 'russian.yml'
 	puts "Enter word or phrase you would like translated to English, press 'Q' to quit:"
 	input = gets.chomp!
 	case
@@ -56,7 +57,7 @@ def russian_translate
 end
 
 def arabic_translate
-	translation = YAML.load_file 'arabic.yml'
+	translations = YAML.load_file 'arabic.yml'
 	puts "Enter word or phrase you woukd like translated to English, press 'Q' to quit:"
 		input = gets.chomp!
 	case
