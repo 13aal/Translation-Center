@@ -11,7 +11,7 @@ def list
 	>Pashto
 	>French
 	
-	It is also able to translate to: 
+	Translation Center is also able to translate into: 
 	
 	>Base64
 	>Binary
