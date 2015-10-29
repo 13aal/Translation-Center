@@ -1,73 +1,31 @@
 require 'yaml'
 
 def welcome
-	puts "Welcome to the Translation Center! Please enter the language you would like to translate to English or you can choose from the list below: " 
-	print	"1. Spanish\n"
-	print	"2. Russian\n"
-	print	"3. Arabic\n" 
-	print"> "
+	puts "Welcome to the Translation Center! To begin press 'B', to quit press 'Q'"
 	input = language = gets.chomp!
-	case language
-	when /spanish/i
-		spanish_translate
-	when "1"
-		spanish_translate
-	when /russian/i
-		russian_translate
-	when "2"
-		russian_translate
-	when /arabic/i
-		arabic_translate
-	when "3"
-		arabic_translate
-	else
-		puts "Language is not yet supported within Translation Center."
+	if language =~ /b/i
+		translate
+	elsif language =~ /q/i
 		exit
+	else
+		puts "Invalid input redirecting..."
+		welcome
 	end
 end
 
-def spanish_translate
-	translations = YAML.load_file 'spanish.yml'
+def translate
+	translations = YAML.load_file 'words.yml'
+	puts "Enter what language you want to translate from:"
+	input = language = gets.chomp
 	puts "Enter word or phrase to be translated to English, press 'Q' to quit:"
 	input = gets.chomp
-	case
-	when translations[input]
-		puts "The translation from Spanish to English is: #{translations[input]}"
-	when input =~ /q/i
-		exit
+	if translations[input]
+		puts "The translation of '#{input}', from #{language} to English is: '#{translations[input]}'"
+	elsif input =~ /q/i
+		return
 	else
 		puts "Invalid word or phrase redirecting..."
-		spanish_translate
-	end
-end
-
-def russian_translate
-	translations = YAML.load_file 'russian.yml'
-	puts "Enter word or phrase you would like translated to English, press 'Q' to quit:"
-	input = gets.chomp!
-	case
-	when translations[input]
-		puts "The translation from Russian to English is: #{translations[input]}"
-	when input =~ /q/i
-		exit
-	else
-		puts "Invalid word or phrase redirecting..."
-		russian_translate
-	end
-end
-
-def arabic_translate
-	translations = YAML.load_file 'arabic.yml'
-	puts "Enter word or phrase you woukd like translated to English, press 'Q' to quit:"
-		input = gets.chomp!
-	case
-	when translations[input]
-		puts "The translation from Arabic to English is: #{translations[input]}"
-	when input =~ /q/i
-		exit
-	else
-		puts "Invalid word or phrase redirecting..."
-		arabic_translate
+		translate
 	end
 end
 welcome
