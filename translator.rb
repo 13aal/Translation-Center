@@ -1,3 +1,11 @@
+=begin
+Editor: Ekultek
+
+Translation Center
+
+Date: 10/30/15
+=end
+
 require 'yaml'
 require 'base64'
 
@@ -5,35 +13,35 @@ def list
 	puts """
 	As of now Translation Center is able to translate from: 
 	
-	>Russian
-	>Spanish
-	>Arabic
-	>Pashto
-	>French
+	1: Russian
+	2: Spanish
+	3: Arabic
+	4: Pashto
+	5: French
 	
 	Translation Center is also able to translate into: 
 	
-	>Base64
-	>Binary
+	6: Base64
+	7: Binary
 	
-	Please choose from the list above by typing in the name of the language you would like to translate to: 
+	Please choose from the list above by typing in the number in front of the language: 
 	"""
 	input = gets.chomp!
 	case
-	when /base64/i
+	when input == "1"
+		translate
+	when input == "2"
+		translate
+	when input == "3"
+		translate
+	when input == "4"
+		translate
+	when input == "5"
+		translate
+	when input == "6"
 		base64
-	when /binary/i
+	when input =="7"
 		binary
-	when /spanish/i
-		translate
-	when /russian/i
-		translate
-	when /arabic/i
-		translate
-	when /pashto/i
-		translate
-	when /french/i
-		translate
 	else
 		puts "Invalid input, redirecting..."
 		return
@@ -72,7 +80,7 @@ def translate
 end
 
 def binary
-	puts "Enter your text:"
+	puts "Enter your text you wanted translated to binary:"
 	text = gets.chomp
 	puts "#{text} in binary is: #{text.unpack('b*')}"
 end
@@ -83,4 +91,4 @@ def base64
 	new_string = "#{input}"
 	puts "'#{input}' in Base64 is: #{Base64.encode64(new_string)}"	
 end
-base64
+welcome
